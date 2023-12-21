@@ -1,6 +1,6 @@
 node {
     stage('Clone Repo') {
-        git branch: 'react-app', url:'https://github.com/agus-3rd-yoga/weather-app.git'
+        git branch: 'main', url:'https://github.com/agus-3rd-yoga/weather-app.git'
     }
 }
 
