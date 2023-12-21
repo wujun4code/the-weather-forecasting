@@ -39,6 +39,6 @@
     ]
   },
   "publishConfig": {
-    "registry":"http://registry:5000"
+    "registry":"http://verdaccio:4873"
   }
 }
