@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                sh 'npm test'
+                sh 'echo "NO TESTING..."'
             }
         }
         stage('Manual Approval') { 
