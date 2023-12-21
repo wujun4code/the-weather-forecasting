@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                sh 'npm --passWithNoTests'
+                sh 'npm test --passWithNoTests'
             }
         }
         stage('Manual Approval') { 
