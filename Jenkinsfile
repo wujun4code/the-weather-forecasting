@@ -7,7 +7,7 @@ node {
 pipeline {
     agent {
         docker {
-            image 'node:16-buster-slim'
+            image 'node:slim'
             args '-p 3000:3000'
         }
     }
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                sh 'echo "NO TESTING..."'
+                sh 'echo "Skip testing..."'
             }
         }
         stage('Manual Approval') { 
