@@ -1,5 +1,5 @@
 {
-  "name": "the-weather-app",
+  "name": "weather-app",
   "version": "0.1.0",
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -17,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll --testMatch **/src/**/*.test.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -37,8 +37,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "publishConfig": {
-    "registry":"http://verdaccio:4873"
   }
 }
