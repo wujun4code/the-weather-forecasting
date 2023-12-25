@@ -7,7 +7,7 @@ node {
 pipeline {
     agent {
         docker {
-            image 'node:alpine'
+            image 'node:20.10.0-alpine3.19'
             args '-p 3000:3000'
         }
     }
@@ -17,22 +17,16 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Test') { 
+        stage('Test') {
             steps {
-                sh 'echo "NO TESTING..."'
+                sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Manual Approval') { 
+        stage('Deliver') { 
             steps {
-                input message: 'Lanjut ke tahap deploy? \
-                    (Klik "Proceed" untuk melanjutkan eksekusi pipeline ke tahap Deploy)'
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                sh './jenkins/scripts/deliver.sh'
-                sh 'sleep 60'
-                sh './jenkins/scripts/kill.sh'
+                sh './jenkins/scripts/deliver.sh' 
+                input message: 'Finished using the web site? (Click "Proceed" to continue)' 
+                sh './jenkins/scripts/kill.sh' 
             }
         }
     }
