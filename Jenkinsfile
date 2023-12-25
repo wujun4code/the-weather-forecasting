@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'react-scripts test --passWithNoTests'
+                sh 'npm test --passWithNoTests'
             }
         }
         stage('Manual Approval') {
