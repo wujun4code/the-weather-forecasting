@@ -24,8 +24,10 @@ pipeline {
         }
         stage('Manual Approval') {
             steps {
-                sh 'sleep 1'
-                input message: 'Lanjutkan ke tahap Deploy? (Click "Proceed" to continue)'
+                script {
+                    sh 'sleep 1'
+                    input message: 'Lanjutkan ke tahap Deploy? (Click "Proceed" to continue)'
+                }
             }
         }
         stage('Deploy') { 
