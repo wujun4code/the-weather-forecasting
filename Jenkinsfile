@@ -22,12 +22,20 @@ pipeline {
                 sh 'react-scripts test --passWithNoTests'
             }
         }
-        stage('Deliver') { 
+        stage('Manual Approval') {
             steps {
-                sh './jenkins/scripts/deliver.sh' 
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                input message: 'Lanjutkan ke tahap Deploy? \
+                sh 'echo ""' \
+                (Click "Proceed" to continue)'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                sh 'npm install'
+                sh 'npm run build'
+                sh 'npm start'
                 sh 'sleep 60'
-                sh './jenkins/scripts/kill.sh' 
+                sh 'kill $(cat .pidfile)'
             }
         }
     }
