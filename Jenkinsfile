@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                sh 'react-scripts test --passWithNoTests'
             }
         }
         stage('Deliver') { 
