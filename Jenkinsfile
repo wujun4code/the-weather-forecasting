@@ -34,7 +34,9 @@ pipeline {
             steps {
                 sh 'npm install'
                 sh 'npm run build'
-                sh 'npm start'
+                sh 'npm start &'
+                sh 'sleep 1'
+                sh 'echo $! > .pidfile'
                 sh 'sleep 60'
                 sh 'kill $(cat .pidfile)'
             }
