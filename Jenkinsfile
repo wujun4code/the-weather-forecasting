@@ -7,7 +7,7 @@ node {
 pipeline {
     agent {
         docker {
-            image 'node:slim'
+            image 'node:alpine'
             args '-p 3000:3000'
         }
     }
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                sh 'echo "Skip testing..."'
+                sh 'echo "NO TESTING..."'
             }
         }
         stage('Manual Approval') { 
