@@ -1,16 +1,16 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-        URL=minio:9001
-	    USERNAME=sysadmin
-	    PASSWORD=sys4dm1n
-	    BUCKET=dicoding
-	    FILE_NAME=$(basename $6)
-	    OBJ_PATH="/${BUCKET}/$5/${FILE_NAME}"
+# INSTALL REQUIRED PACKAGES
+npm ci
+npm run build
 
-	    # Static Vars
-	    DATE=$(date -R --utc)
-	    CONTENT_TYPE='application/gzip'
-	    #SIG_STRING="PUT\n\n${CONTENT_TYPE}\n${DATE}\n${OBJ_PATH}"
-	    SIGNATURE='htLLnFOlK169pzY27KE4JS6iyA0='
+# CONFIGURE NPM SETTINGS
+echo "@agus3rdyoga:registry=https://registry.npmjs.org" >> .npmrc
+echo "unsafe-perm=true"
+echo "https://registry.npmjs.org/:_password:^7(!:t9Vb$BJpkV" >> .npmrc
+echo "https://registry.npmjs.org/:username:agus3rdyoga" >> .npmrc
+echo "https://registry.npmjs.org/:email:agus.3rd.yoga@gmail.com" >> .npmrc
+echo "https://registry.npmjs.org/:always-auth=false" >> .npmrc
 
-sh 'curl --silent -v -X PUT -T "${FILE}" -H "Host: $URL" -H "Date: ${DATE}" -H "Content-Type: ${CONTENT_TYPE}" -H "Authorization: AWS ${USERNAME}:${SIGNATURE}" http://$URL${OBJ_PATH}'
+# Publish!
+npm publish
