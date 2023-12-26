@@ -13,4 +13,4 @@
 	    SIG_STRING="PUT\n\n${CONTENT_TYPE}\n${DATE}\n${OBJ_PATH}"
 	    SIGNATURE=`echo -en ${SIG_STRING} | openssl sha1 -hmac ${PASSWORD} -binary | base64`
 
-sh 'curl --silent -v -X PUT -T "${FILE}" -H "Host: $URL" -H "Date: ${DATE}" -H "Content-Type: ${CONTENT_TYPE}" -H "Authorization: AWS ${USERNAME}:${SIGNATURE}" https://$URL${OBJ_PATH}'
+sh 'curl --silent -v -X PUT -T "${FILE}" -H "Host: $URL" -H "Date: ${DATE}" -H "Content-Type: ${CONTENT_TYPE}" -H "Authorization: AWS ${USERNAME}:${SIGNATURE}" http://$URL${OBJ_PATH}'
