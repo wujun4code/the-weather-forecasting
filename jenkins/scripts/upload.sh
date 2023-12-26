@@ -13,5 +13,5 @@
 #echo "https://registry.npmjs.org/:always-auth=false" >> .npmrc
 
 # Publish!
-npm set //registry.npmjs.org/:_authToken=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
+npm set //registry.npmjs.org/:_authToken=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
 npm publish --access public
