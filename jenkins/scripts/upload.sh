@@ -16,6 +16,6 @@
 # Publish!
 #npm config set registry http://registry.npmjs.org
 #npm login
-npm set //registry.npmjs.org/:_authToken=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
-npm login --scope=@agus3rdyoga --registry=https://registry.npmjs.org
-npm publish
+#npm set //registry.npmjs.org/:_authToken=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
+#npm login --scope=@agus3rdyoga --registry=https://registry.npmjs.org
+#npm publish
