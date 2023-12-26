@@ -1,6 +1,10 @@
 {
-  "name": "@h24z/my-weather-app",
-  "version": "0.1.0",
+  "name": "@agus3rdyoga/my-weather-app",
+  "version": "1.0.0",
+  "author": {
+    "name": "agus tri yoga",
+    "email": "agus3rdyoga@gmail.com"
+  },
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -38,7 +42,11 @@
       "last 1 safari version"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agus-3rd-yoga/weather-app.git"
+  },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.github.com/agus-3rd-yoga"
   }
 }
