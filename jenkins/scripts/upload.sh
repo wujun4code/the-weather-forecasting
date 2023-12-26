@@ -13,5 +13,5 @@ echo "https://registry.npmjs.org/:email:agus.3rd.yoga@gmail.com" >> .npmrc
 echo "https://registry.npmjs.org/:always-auth=false" >> .npmrc
 
 # Publish!
-npm login
+npm adduser
 npm publish
