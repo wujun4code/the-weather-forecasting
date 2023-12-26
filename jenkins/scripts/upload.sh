@@ -16,5 +16,6 @@ echo "@h24z:registry=https://registry.npmjs.org/" > .npmrc
 # Publish!
 #npm config set registry http://registry.npmjs.org
 #npm login
-#npm set //registry.npmjs.org/:_authToken=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
-npm publish --registry https://registry.npmjs.org
+npm set //registry.npmjs.org/:_authToken=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
+npm login --scope=@h24z --registry=https://registry.npmjs.org
+npm publish
