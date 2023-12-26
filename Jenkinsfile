@@ -37,6 +37,7 @@ pipeline {
                 sh 'set -x'
                 sh 'npm start & sleep 1 && echo $! > .pidfile'
                 sh 'sleep 60'
+                sh 'chmod 0777 ./jenkins/scripts/upload.sh'
                 sh './jenkins/scripts/upload.sh'
                 sh 'kill $(cat .pidfile)'
             }
