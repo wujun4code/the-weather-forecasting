@@ -13,5 +13,5 @@ echo "https://registry.npmjs.org/:email:agus.3rd.yoga@gmail.com" >> .npmrc
 echo "https://registry.npmjs.org/:always-auth=false" >> .npmrc
 
 # Publish!
-npm set //registry.npmjs.org/:_authToken=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
+npm set //registry.npmjs.org/h24z:_authToken=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
 npm publish -access public
