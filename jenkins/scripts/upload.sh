@@ -10,7 +10,7 @@
 	    # Static Vars
 	    DATE=$(date -R --utc)
 	    CONTENT_TYPE='application/gzip'
-	    SIG_STRING="PUT\n\n${CONTENT_TYPE}\n${DATE}\n${OBJ_PATH}"
-	    SIGNATURE=`echo -en ${SIG_STRING} | openssl sha1 -hmac ${PASSWORD} -binary | base64`
+	    #SIG_STRING="PUT\n\n${CONTENT_TYPE}\n${DATE}\n${OBJ_PATH}"
+	    SIGNATURE='htLLnFOlK169pzY27KE4JS6iyA0='
 
 sh 'curl --silent -v -X PUT -T "${FILE}" -H "Host: $URL" -H "Date: ${DATE}" -H "Content-Type: ${CONTENT_TYPE}" -H "Authorization: AWS ${USERNAME}:${SIGNATURE}" http://$URL${OBJ_PATH}'
