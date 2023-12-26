@@ -1,5 +1,5 @@
 {
-  "name": "@h24z/weather-app",
+  "name": "my-weather-app",
   "version": "0.1.0",
   "dependencies": {
     "@emotion/react": "^11.10.5",
