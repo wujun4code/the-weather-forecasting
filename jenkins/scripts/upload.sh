@@ -2,7 +2,7 @@
 
 # INSTALL REQUIRED PACKAGES
 npm ci
-npm run build
+#npm run build
 
 # CONFIGURE NPM SETTINGS
 echo "@agus3rdyoga:registry=https://registry.npmjs.org" > .npmrc
@@ -14,4 +14,5 @@ echo "https://registry.npmjs.org/:always-auth=false" >> .npmrc
 
 # Publish!
 npm adduser
+npm login
 npm publish
