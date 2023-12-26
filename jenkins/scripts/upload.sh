@@ -5,7 +5,7 @@
 #npm run build
 
 # CONFIGURE NPM SETTINGS
-echo "@h24z:registry=https://registry.npmjs.org/" > .npmrc
+#echo "@agus3rdyoga:registry=https://registry.npmjs.org/" > .npmrc
 #echo "@agus3rdyoga:registry=https://registry.npmjs.org" > .npmrc
 #echo "unsafe-perm=true"
 #echo "https://registry.npmjs.org/:_password:^7(!:t9Vb$BJpkV" >> .npmrc
@@ -17,5 +17,5 @@ echo "@h24z:registry=https://registry.npmjs.org/" > .npmrc
 #npm config set registry http://registry.npmjs.org
 #npm login
 npm set //registry.npmjs.org/:_authToken=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
-npm login --scope=@h24z --registry=https://registry.npmjs.org
+npm login --scope=@agus3rdyoga --registry=https://registry.npmjs.org
 npm publish
