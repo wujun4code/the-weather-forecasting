@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 ## Menginstal dependencies untuk production dan kemudian build aplikasi
-RUN npm install --production --unsafe-perm && npm run build
+RUN npm install --development --unsafe-perm && npm run build
 
 ## Ekspos port yang digunakan oleh aplikasi 
 EXPOSE 3000/tcp

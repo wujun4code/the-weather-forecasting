@@ -13,4 +13,3 @@ build_push_image.sh
 .npmrc
 Jenkinsfile
 jenkins
-scripts
