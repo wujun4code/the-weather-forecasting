@@ -17,7 +17,7 @@ const UTCDatetime = () => {
         fontFamily: 'Poppins',
       }}
     >
-      {utcFullDate} GMT
+      {utcFullDate} GMT+7
     </Typography>
   );
   return utcTimeValue;
