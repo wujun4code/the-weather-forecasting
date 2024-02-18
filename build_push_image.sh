@@ -10,7 +10,7 @@ clear
 build () {
 echo "Build image from Dockerfile"
 echo -e "----------------------------\n\n"
-docker build --tag weather-app:v1 -f /home/sysadmin/weather-app/Dockerfile .
+docker build --tag weather-app:latest -f /home/sysadmin/weather-app/Dockerfile .
 }
 
 ## Create function list to listing available local image
