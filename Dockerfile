@@ -38,10 +38,10 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-RUN npm install --development --unsafe-perm -g weather-app.local
+RUN npm install --development --unsafe-perm
 
 COPY --from=build /app/build ./build
 
 EXPOSE 3000
 
-CMD weather-app.local -d ./build
+CMD [ "npm", "start" ]
