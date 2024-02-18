@@ -24,7 +24,7 @@ docker image ls
 name () {
 echo "Change image name to match DockerHub naming format"
 echo -e "---------------------------------------------------\n\n"
-docker tag $(docker image ls | grep -E 'weather-app|v1' | awk '{print $3}'|tail -1) agus3rdyoga/weather-app:v1
+docker tag $(docker image ls | grep -E 'weather-app|latest' | awk '{print $3}'|tail -1) agus3rdyoga/weather-app:latest
 echo "Renaming docker image label..."
 }
 
@@ -39,7 +39,7 @@ echo $TOKEN_DOCKER_HUB | docker login -u agus3rdyoga --password-stdin
 upload () {
 echo "Upload image to docker hub"
 echo -e "---------------------------\n\n"
-docker push agus3rdyoga/weather-app:v1
+docker push agus3rdyoga/weather-app:latest
 }
 
 ## Run all function in sequence following the rules from Dicoding material 

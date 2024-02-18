@@ -11,7 +11,7 @@ services:
     container_name: weather-app
 
     # Set nodejs app image version using tag & using our newly created custom nodejs image
-    image: docker.io/agus3rdyoga/weather-app:v1
+    image: docker.io/agus3rdyoga/weather-app:latest
 
     # Set container to automatically restart if error occurs
     restart: always
