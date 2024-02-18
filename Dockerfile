@@ -16,27 +16,26 @@
 ## Menjalankan container
 #CMD [ "npm", "start" ]
 
-
 # STAGE 1
 
 FROM node:16-alpine AS build
 
 WORKDIR /app
 
-COPY . .
+COPY package.json ./
 
-RUN npm install --development --unsafe-perm
+RUN yarn  install
+
+COPY . /app
+
+RUN yarn build
 
 # STAGE 2
 
-FROM node:16-alpine
+FROM nginx:stable-alpine
 
-WORKDIR /app
+COPY --from=build /app/build /usr/share/nginx/html
 
-RUN npm install --development --unsafe-perm
+EXPOSE 80
 
-COPY --from=build /app/build ./app
-
-EXPOSE 3000
-
-CMD [ "npm", "start" ]
+CMD ["nginx", "-g", "daemon off;"]
