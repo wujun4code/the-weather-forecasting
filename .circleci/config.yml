@@ -12,6 +12,7 @@ jobs:
     parallelism: 4
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Build and push image
           command: |
