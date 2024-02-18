@@ -40,7 +40,7 @@ jobs:
             git commit -m "new build with imgTag build-$TAG"
             git config credential.helper 'cache --timeout=120'
             git push -q https://$GITHUB_PERSONAL_TOKEN@github.com/agus-3rd-yoga/weather-app.git main 
-
+            
 workflows:
   GitOpsflow:
     jobs:
