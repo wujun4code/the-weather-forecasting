@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build_and_push:
     docker:
-      - image: cimg/node
+      - image: cimg/node:21.6.1
     steps:
       - checkout
       - setup_remote_docker
@@ -18,7 +18,7 @@ jobs:
 
   Update_manifest:
     docker:
-      - image: cimg/base
+      - image: cimg/base:2024.01
     steps:
       - checkout
       - setup_remote_docker
