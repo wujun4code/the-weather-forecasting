@@ -23,14 +23,9 @@ FROM node:16-alpine AS build
 
 WORKDIR /app
 
-COPY package.json ./
+COPY . .
 
 RUN npm install --development --unsafe-perm
-
-COPY . /app
-
-RUN npm run build
-
 
 # STAGE 2
 
@@ -40,7 +35,7 @@ WORKDIR /app
 
 RUN npm install --development --unsafe-perm
 
-COPY --from=build /app/build ./build
+COPY --from=build /app/build ./app
 
 EXPOSE 3000
 
