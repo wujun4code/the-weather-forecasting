@@ -6,7 +6,7 @@ orbs:
   kubernetes: circleci/kubernetes@1.3.1
 
 jobs:
-  image-deploy:
+  image_deploy:
     docker:
       - image: cimg/node:21.6.1
     parallelism: 4
@@ -48,7 +48,7 @@ jobs:
 workflows:
   Deploy-App:
     jobs:
-      - image-deploy
+      - image_deploy
       - Update_manifest:
           requires:
-            - image-deploy
+            - image_deploy
