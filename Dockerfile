@@ -24,11 +24,11 @@ WORKDIR /app
 
 COPY package.json ./
 
-RUN yarn  install
+RUN npm install --development --unsafe-perm
 
 COPY . /app
 
-RUN yarn build
+RUN npm run build
 
 # STAGE 2
 
