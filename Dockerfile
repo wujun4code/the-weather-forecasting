@@ -12,6 +12,8 @@ COPY . /app
 
 RUN npm run build
 
+RUN ls -lah /app
+
 # STAGE 2
 
 FROM nginx:stable-alpine
