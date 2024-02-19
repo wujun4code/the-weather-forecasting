@@ -1,4 +1,4 @@
-# 💻 Live Demo:
+## 💻 Live Demo:
 
 https://weather-app-7w1.pages.dev/
 
@@ -27,4 +27,4 @@ git clone https://github.com/agus-3rd-yoga/weather-app.git
 <br/>
 
 
-Thank You ☺
+## Thank You ☺
