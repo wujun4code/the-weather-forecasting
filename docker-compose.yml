@@ -1,0 +1,21 @@
+# Using latest API version
+version: '3.8'
+
+# Define services for App & DB
+services:
+
+  # Define NodeJS app service
+  item-app:
+
+    # Set name for app container
+    container_name: weather-app
+
+    # Set nodejs app image version using tag & using our newly created custom nodejs image
+    image: docker.io/agus3rdyoga/weather-app:latest
+
+    # Set container to automatically restart if error occurs
+    restart: always
+    
+    # Set port maping with format: local/host -> container
+    ports:
+      - "80:80"

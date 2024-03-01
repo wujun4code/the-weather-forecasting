@@ -1,0 +1,52 @@
+version: 2.1
+
+jobs:
+  build_and_push:
+    docker:
+      - image: cimg/node:21.6.1
+#    parallelism: 4
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build and push image
+          command: |
+            version="build-$CIRCLE_BUILD_NUM"
+            echo $version
+            docker build -t agus3rdyoga/weather-app:$version .
+            echo $DOCKER_PASSWORD | docker login -u agus3rdyoga --password-stdin
+            docker push agus3rdyoga/weather-app:$version
+
+  Update_manifest:
+    docker:
+      - image: cimg/base:2024.01
+#    parallelism: 4
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Updating Manifest file 
+          command: |
+            TAG=$CIRCLE_BUILD_NUM
+            ((TAG--))
+            git clone https://github.com/agus-3rd-yoga/weather-app.git
+            git config --global user.email "agus.3rd.yoga@gmail.com"
+            git config --global user.name "agus-3rd-yoga"
+            pwd
+            cd weather-app
+            pwd
+            echo $TAG
+            git add .
+            git commit -m "new build with imgTag build-$TAG"
+            git config credential.helper 'cache --timeout=120'
+            git push -q https://$GITHUB_PERSONAL_TOKEN@github.com/agus-3rd-yoga/weather-app.git main 
+            
+workflows:
+  GitOpsflow:
+    jobs:
+      - build_and_push
+      - Update_manifest:
+          requires:
+            - build_and_push

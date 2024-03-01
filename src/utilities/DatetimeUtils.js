@@ -37,7 +37,7 @@ export function getUTCDatetime() {
     hour: '2-digit',
     minute: '2-digit',
     hourCycle: 'h23',
-    timeZone: 'UTC',
+    timeZone: 'Asia/Jakarta',
   });
 
   const isoDateString = new Date().toISOString();
@@ -51,7 +51,7 @@ export function getUTCTime() {
     minute: '2-digit',
     second: '2-digit',
     hourCycle: 'h23',
-    timeZone: 'UTC',
+    timeZone: 'Asia/Jakarta',
   });
 
   return utcTime;
