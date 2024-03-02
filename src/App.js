@@ -24,7 +24,7 @@ function App() {
   const [error, setError] = useState(false);
 
   const searchChangeHandler = async (enteredData) => {
-    const [latitude, longitude, locationId] = enteredData.value.split(' ');
+    const locationId = enteredData.value.split(' ')[2];
     const { city } = enteredData;
 
     setIsLoading(true);

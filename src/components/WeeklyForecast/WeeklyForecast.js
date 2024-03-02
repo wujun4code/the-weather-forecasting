@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import WeeklyForecastItem from './WeeklyForecastItem';
 import ErrorBox from '../Reusable/ErrorBox';
-import UnfedForecastItem from './UnfedForecastItem';
 import DayWeatherDetails from './DayWeatherDetails';
 import Layout from '../Reusable/Layout';
 import LocalizedText from '../../i18n/localized';

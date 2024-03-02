@@ -1,11 +1,10 @@
 import React from 'react';
-import { Box, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { getDayMonthFromDate } from '../../../utilities/DatetimeUtils';
-import { weatherIcon, DynamicIcon } from '../../../utilities/IconsUtils';
+import { DynamicIcon } from '../../../utilities/IconsUtils';
 import ErrorBox from '../../Reusable/ErrorBox';
 import CityDateDetail from './CityDateDetail';
 import TemperatureWeatherDetail from './TemperatureWeatherDetail';
-import WeatherIconDetail from './WeatherIconDetail';
 import Layout from '../../Reusable/Layout';
 import { useIntl } from 'react-intl';
 import labels from '../../../i18n/labels';

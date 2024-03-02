@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { getUTCDatetime, getLocalDateTime } from '../../utilities/DatetimeUtils';
+import { getLocalDateTime } from '../../utilities/DatetimeUtils';
 import React, { useState, useEffect } from 'react';
 import { FormattedDate, IntlProvider } from 'react-intl';
 

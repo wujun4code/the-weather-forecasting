@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
-import { fetchCities } from '../../api/OpenWeatherService';
 import { gql } from "@apollo/client";
 import { client } from '../../index'
 
@@ -24,18 +23,9 @@ query SearchLocations($location: String!, $lang: String!) {
 const Search = ({ onSearchChange }) => {
   const [searchValue, setSearchValue] = useState(null);
 
-  // const optionsPending = {
-  //   options: cities?.map((city) => {
-  //     return {
-  //       value: `${city.lat} ${city.lon}`,
-  //       label: `${city.name}, ${city.country}`,
-  //     };
-  //   }),
-  // };
-
   const getSelectingLabel = (city) => {
     let label = `${city.name}`;
-    if (city.adm2 && city.adm2 != city.name) label = `${label}, ${city.adm2}`;
+    if (city.adm2 && city.adm2 !== city.name) label = `${label}, ${city.adm2}`;
 
     if (city.adm1) label = `${label}, ${city.adm1}`;
 

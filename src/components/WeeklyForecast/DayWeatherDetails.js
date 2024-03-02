@@ -8,7 +8,7 @@ const DayWeatherDetails = (props) => {
 
   const { qiDailyItem } = props;
 
-  const { fxDate, tempMax, tempMin, iconDay, textDay, iconNight } = qiDailyItem;
+  const { fxDate, iconDay, textDay, } = qiDailyItem;
   return (
     <Grid
       container

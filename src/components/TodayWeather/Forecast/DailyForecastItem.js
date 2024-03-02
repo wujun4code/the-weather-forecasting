@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { weatherIcon, DynamicIcon } from '../../../utilities/IconsUtils';
+import { DynamicIcon } from '../../../utilities/IconsUtils';
 import { LocalizedHourMinute } from '../../Reusable/UTCDatetime';
 
 const DailyForecastItem = (props) => {
