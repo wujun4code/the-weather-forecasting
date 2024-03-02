@@ -60,7 +60,7 @@ const WeeklyForecast = ({ qiDailyData }) => {
               >
                 <WeeklyForecastItem
                   type="temperature"
-                  value={Math.round(item.tempMax) + ' °C'}
+                  value={Math.round(item.tempMin) + ' ~ ' + Math.round(item.tempMax) + ' °C'}
                   color="black"
                 />
                 <WeeklyForecastItem

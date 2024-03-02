@@ -176,7 +176,7 @@ function App() {
               marginBottom: '1rem',
             }}
           >
-            <Box
+            {/* <Box
               component="img"
               sx={{
                 height: { xs: '16px', sm: '22px', md: '26px' },
@@ -184,7 +184,21 @@ function App() {
               }}
               alt="logo"
               src={Logo}
-            />
+            /> */}
+
+            <Typography
+              variant="h3"
+              component="h3"
+              sx={{
+                fontSize: '36px',
+                color: 'rgba(255, 255, 255, .8)',
+                lineHeight: 1,
+                fontFamily: 'Poppins',
+              }}
+            >
+              TOWA
+            </Typography>
+
 
             <AutoRefreshingDateTime />
             <Link
