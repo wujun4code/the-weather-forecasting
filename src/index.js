@@ -11,6 +11,7 @@ import 'qweather-icons/font/qweather-icons.css';
 export const client = new ApolloClient({
     uri: 'https://weather-graphql.shouyicheng.com/',
     cache: new InMemoryCache(),
+    credentials: 'same-origin'
 });
 
 const RootComponent = () => {
