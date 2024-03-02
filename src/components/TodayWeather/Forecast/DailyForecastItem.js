@@ -1,8 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { weatherIcon } from '../../../utilities/IconsUtils';
+import { weatherIcon, DynamicIcon } from '../../../utilities/IconsUtils';
+import { LocalizedHourMinute } from '../../Reusable/UTCDatetime';
 
 const DailyForecastItem = (props) => {
+  const { qiItem: { fxTime, icon, text } } = props;
   return (
     <Box
       sx={{
@@ -28,7 +30,8 @@ const DailyForecastItem = (props) => {
           fontFamily: 'Poppins',
         }}
       >
-        {props.item.time}
+        {/* {props.item.time} */}
+        <LocalizedHourMinute dateTimeString={fxTime} />
       </Typography>
       <Box
         sx={{
@@ -39,7 +42,6 @@ const DailyForecastItem = (props) => {
         }}
       >
         <Box
-          component="img"
           sx={{
             width: { xs: '36px', sm: '42px' },
             height: 'auto',
@@ -49,10 +51,10 @@ const DailyForecastItem = (props) => {
             alignSelf: 'center',
             margin: '0 auto',
           }}
-          alt="weather"
-          src={weatherIcon(`${props.data.weather[0].icon}.png`)}
-        />
-       <i className="qi-901"></i>
+          alt="weather">
+          <DynamicIcon iconName={icon}></DynamicIcon>
+        </Box>
+
       </Box>
       <Typography
         variant="h3"
@@ -67,7 +69,7 @@ const DailyForecastItem = (props) => {
           fontFamily: 'Poppins',
         }}
       >
-        {props.item.temperature}
+        {text}
       </Typography>
     </Box>
   );

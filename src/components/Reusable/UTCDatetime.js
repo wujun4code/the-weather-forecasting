@@ -76,3 +76,16 @@ export const CurrentDate = () => {
 
   return formattedDate;
 };
+
+
+export const LocalizedHourMinute = ({ dateTimeString }) => {
+  const localDate = new Date(dateTimeString);
+
+  return (
+    <FormattedDate
+      value={localDate}
+      hour="numeric"
+      minute="numeric"
+    />
+  );
+};

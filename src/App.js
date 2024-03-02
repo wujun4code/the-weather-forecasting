@@ -23,6 +23,7 @@ function App() {
   const intl = useIntl();
   const [todayWeather, setTodayWeather] = useState(null);
   const [todayForecast, setTodayForecast] = useState([]);
+  const [qiHourlyData, setQiHourlyData] = useState([]);
   const [weekForecast, setWeekForecast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -40,9 +41,7 @@ function App() {
       const [todayWeatherResponse, weekForecastResponse] =
         await fetchWeatherData(latitude, longitude);
 
-      const { getHourlyByLocationId: aa } = await GetHourlyByLocationId(locationId, "Hourly24H", intl.locale, 6);
-
-      console.log(`aa:${aa}`);
+      const { getHourlyByLocationId } = await GetHourlyByLocationId(locationId, "Hourly24H", intl.locale, 6);
 
       const all_today_forecasts_list = getTodayForecastWeather(
         weekForecastResponse,
@@ -58,6 +57,7 @@ function App() {
 
       setTodayForecast([...all_today_forecasts_list]);
       setTodayWeather({ city: enteredData.label, ...todayWeatherResponse });
+      setQiHourlyData(getHourlyByLocationId);
       setWeekForecast({
         city: enteredData.label,
         list: all_week_forecasts_list,
@@ -110,7 +110,7 @@ function App() {
       <React.Fragment>
         <Grid item xs={12} md={todayWeather ? 6 : 12}>
           <Grid item xs={12}>
-            <TodayWeather data={todayWeather} forecastList={todayForecast} />
+            <TodayWeather data={todayWeather} forecastList={todayForecast} qiHourlyData={qiHourlyData} />
           </Grid>
         </Grid>
         <Grid item xs={12} md={6}>

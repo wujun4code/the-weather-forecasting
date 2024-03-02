@@ -5,7 +5,7 @@ import ErrorBox from '../../Reusable/ErrorBox';
 import Layout from '../../Reusable/Layout';
 import LocalizedText from '../../../i18n/localized';
 
-const DailyForecast = ({ data, forecastList }) => {
+const DailyForecast = ({ data, forecastList, qiHourlyData }) => {
   const noDataProvided =
     !data ||
     !forecastList ||
@@ -14,6 +14,7 @@ const DailyForecast = ({ data, forecastList }) => {
     forecastList.cod === '404';
 
   let subHeader;
+
 
   if (!noDataProvided && forecastList.length > 0)
     subHeader = (
@@ -29,9 +30,9 @@ const DailyForecast = ({ data, forecastList }) => {
           marginBottom: '1rem',
         }}
       >
-        {forecastList.length === 1
+        {/* {forecastList.length === 1
           ? '1 available forecast'
-          : `${forecastList.length} available forecasts`}
+          : `${forecastList.length} available forecasts`} */}
       </Typography>
     );
 
@@ -52,7 +53,7 @@ const DailyForecast = ({ data, forecastList }) => {
         }}
         spacing="4px"
       >
-        {forecastList.map((item, idx) => (
+        {qiHourlyData.map((item, idx) => (
           <Grid
             key={idx}
             item
@@ -65,7 +66,7 @@ const DailyForecast = ({ data, forecastList }) => {
               marginBottom: { xs: '1rem', sm: '0' },
             }}
           >
-            <DailyForecastItem item={item} data={data} />
+            <DailyForecastItem item={item} data={data} qiItem={item} />
           </Grid>
         ))}
       </Grid>
