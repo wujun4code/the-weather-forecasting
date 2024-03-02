@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import labels from './labels'; // 假设你的 labels 文件路径是 './labels'
 

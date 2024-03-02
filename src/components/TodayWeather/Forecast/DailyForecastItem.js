@@ -52,7 +52,7 @@ const DailyForecastItem = (props) => {
             margin: '0 auto',
           }}
           alt="weather">
-          <DynamicIcon iconName={icon}></DynamicIcon>
+          <DynamicIcon size='32' iconName={icon}></DynamicIcon>
         </Box>
 
       </Box>

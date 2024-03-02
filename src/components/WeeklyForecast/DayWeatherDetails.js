@@ -1,7 +1,14 @@
 import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { ShortFormattedDate } from '../Reusable/UTCDatetime';
+import { DynamicIcon } from '../../utilities/IconsUtils';
+
 
 const DayWeatherDetails = (props) => {
+
+  const { qiDailyItem } = props;
+
+  const { fxDate, tempMax, tempMin, iconDay, textDay, iconNight } = qiDailyItem;
   return (
     <Grid
       container
@@ -25,7 +32,7 @@ const DayWeatherDetails = (props) => {
           display: 'flex',
         }}
       >
-        {props.day}
+        <ShortFormattedDate dateString={fxDate} />
       </Typography>
       <Box
         xs={12}
@@ -37,15 +44,16 @@ const DayWeatherDetails = (props) => {
         }}
       >
         <Box
-          component="img"
           sx={{
             width: { xs: '24px', sm: '28px', md: '31px' },
             height: 'auto',
             marginRight: '4px',
+            color: 'rgba(255, 255, 255, .9)',
           }}
           alt="weather"
-          src={props.src}
-        />
+        >
+          <DynamicIcon iconName={iconDay}></DynamicIcon>
+        </Box>
         <Typography
           variant="h4"
           component="h4"
@@ -56,7 +64,7 @@ const DayWeatherDetails = (props) => {
             fontFamily: 'Roboto Condensed',
           }}
         >
-          {props.description}
+          {textDay}
         </Typography>
       </Box>
     </Grid>

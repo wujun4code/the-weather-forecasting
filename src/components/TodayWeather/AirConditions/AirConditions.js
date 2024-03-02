@@ -5,11 +5,11 @@ import Layout from '../../Reusable/Layout';
 import labels from '../../../i18n/labels';
 import { useIntl } from 'react-intl';
 
-const TodayWeatherAirConditions = ({ data }) => {
+const TodayWeatherAirConditions = ({ qiNowData }) => {
   const intl = useIntl();
-  const noDataProvided =
-    !data || Object.keys(data).length === 0 || data.cod === '404';
+  const noDataProvided = !qiNowData || Object.keys(qiNowData).length === 0;
 
+  const { humidity, feelsLike, windSpeed, cloud } = qiNowData;
   let content = <ErrorBox flex="1" type="error" />;
 
   if (!noDataProvided)
@@ -17,22 +17,22 @@ const TodayWeatherAirConditions = ({ data }) => {
       <>
         <AirConditionsItem
           title={labels[intl.locale]['feels-like']}
-          value={`${Math.round(data.main.feels_like)} °C`}
+          value={`${Math.round(feelsLike)} °C`}
           type="temperature"
         />
         <AirConditionsItem
           title={labels[intl.locale]['wind-speed']}
-          value={`${data.wind.speed} m/s`}
+          value={`${windSpeed} m/s`}
           type="wind"
         />
         <AirConditionsItem
           title={labels[intl.locale]['clouds']}
-          value={`${Math.round(data.clouds.all)} %`}
+          value={`${Math.round(cloud)} %`}
           type="clouds"
         />
         <AirConditionsItem
           title={labels[intl.locale]['humidity']}
-          value={`${Math.round(data.main.humidity)} %`}
+          value={`${Math.round(humidity)} %`}
           type="humidity"
         />
       </>

@@ -1,21 +1,17 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import { getWeekDays } from '../../utilities/DatetimeUtils';
-import { weatherIcon } from '../../utilities/IconsUtils';
 import WeeklyForecastItem from './WeeklyForecastItem';
 import ErrorBox from '../Reusable/ErrorBox';
 import UnfedForecastItem from './UnfedForecastItem';
 import DayWeatherDetails from './DayWeatherDetails';
 import Layout from '../Reusable/Layout';
+import LocalizedText from '../../i18n/localized';
 
-const WeeklyForecast = ({ data }) => {
-  const forecastDays = getWeekDays();
+const WeeklyForecast = ({ qiDailyData }) => {
 
   const noDataProvided =
-    !data ||
-    Object.keys(data).length === 0 ||
-    !data.list ||
-    data.list.length === 0;
+    !qiDailyData ||
+    Object.keys(qiDailyData).length === 0;
 
   let content = (
     <div style={{ width: '100%' }}>
@@ -33,7 +29,7 @@ const WeeklyForecast = ({ data }) => {
         xs={12}
         gap="4px"
       >
-        {data.list.map((item, idx) => {
+        {qiDailyData.map((item, idx) => {
           return (
             <Grid
               item
@@ -51,9 +47,7 @@ const WeeklyForecast = ({ data }) => {
               }}
             >
               <DayWeatherDetails
-                day={forecastDays[idx]}
-                src={weatherIcon(`${item.icon}`)}
-                description={item.description}
+                qiDailyItem={item}
               />
 
               <Grid
@@ -67,12 +61,12 @@ const WeeklyForecast = ({ data }) => {
               >
                 <WeeklyForecastItem
                   type="temperature"
-                  value={Math.round(item.temp) + ' °C'}
+                  value={Math.round(item.tempMax) + ' °C'}
                   color="black"
                 />
                 <WeeklyForecastItem
                   type="clouds"
-                  value={item.clouds + ' %'}
+                  value={item.cloud + ' %'}
                   color="black"
                 />
               </Grid>
@@ -88,7 +82,7 @@ const WeeklyForecast = ({ data }) => {
               >
                 <WeeklyForecastItem
                   type="wind"
-                  value={item.wind + ' m/s'}
+                  value={item.windSpeedDay + ' m/s'}
                   color="green"
                 />
                 <WeeklyForecastItem
@@ -100,7 +94,7 @@ const WeeklyForecast = ({ data }) => {
             </Grid>
           );
         })}
-        {data.list.length === 5 && (
+        {qiDailyData.length === 5 && (
           <Grid
             item
             xs={12}
@@ -115,11 +109,6 @@ const WeeklyForecast = ({ data }) => {
               borderRadius: '8px',
             }}
           >
-            <UnfedForecastItem
-              day={forecastDays[5]}
-              value="NaN"
-              src={weatherIcon('unknown.png')}
-            />
           </Grid>
         )}
       </Grid>
@@ -127,7 +116,7 @@ const WeeklyForecast = ({ data }) => {
 
   return (
     <Layout
-      title="WEEKLY FORECAST"
+      title={LocalizedText({ dataSource: 'labels', key: 'coming-days-forecast' })}
       content={content}
       mb=".8rem"
       sx={{

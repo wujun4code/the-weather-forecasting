@@ -9,6 +9,7 @@ const labels = {
         'wind-speed':'Wind',
         'feels-like':'Real Feel',
         'today-hourly':'TODAY\'S FORECAST',
+        'coming-days-forecast':'Coming days forecast',
         submitButton: 'Submit',
         cancelButton: 'Cancel',
         // Add more labels as needed
@@ -22,6 +23,7 @@ const labels = {
         'clouds':'云量',
         'feels-like':'体感温度',
         'today-hourly':'今日分时段预测表',
+        'coming-days-forecast':'未来几天预报',
         submitButton: '提交',
         cancelButton: '取消',
         // Add more labels as needed
@@ -35,6 +37,7 @@ const labels = {
         'wind-speed':'風速',
         'feels-like':'體感溫度',
         'today-hourly':'今日分時段預測表',
+        'coming-days-forecast':'未來幾天預報',
         submitButton: '提交',
         cancelButton: '取消',
         // Add more labels as needed

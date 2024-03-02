@@ -89,3 +89,16 @@ export const LocalizedHourMinute = ({ dateTimeString }) => {
     />
   );
 };
+
+export const ShortFormattedDate = ({ dateString }) => {
+  const date = new Date(dateString);
+
+  return (
+    <FormattedDate
+      value={date}
+      year="numeric"
+      month="short"
+      day="numeric"
+    />
+  );
+};

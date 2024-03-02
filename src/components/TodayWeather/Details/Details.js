@@ -1,7 +1,7 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { getDayMonthFromDate } from '../../../utilities/DatetimeUtils';
-import { weatherIcon } from '../../../utilities/IconsUtils';
+import { weatherIcon, DynamicIcon } from '../../../utilities/IconsUtils';
 import ErrorBox from '../../Reusable/ErrorBox';
 import CityDateDetail from './CityDateDetail';
 import TemperatureWeatherDetail from './TemperatureWeatherDetail';
@@ -12,12 +12,14 @@ import labels from '../../../i18n/labels';
 
 const dayMonth = getDayMonthFromDate();
 
-const Details = ({ data }) => {
+const Details = ({ qiCity, qiNowData }) => {
 
   const intl = useIntl();
 
+  const { temp, text, icon } = qiNowData;
+
   const noDataProvided =
-    !data || Object.keys(data).length === 0 || data.cod === '404';
+    !qiNowData || Object.keys(qiNowData).length === 0;
 
   let content = <ErrorBox flex="1" type="error" />;
 
@@ -31,7 +33,7 @@ const Details = ({ data }) => {
             height: '80px',
           }}
         >
-          <CityDateDetail city={data.city} date={dayMonth} />
+          <CityDateDetail qiCity={qiCity} date={dayMonth} />
         </Grid>
         <Grid
           item
@@ -41,8 +43,8 @@ const Details = ({ data }) => {
           }}
         >
           <TemperatureWeatherDetail
-            temperature={data.main.temp}
-            description={data.weather[0].description}
+            temperature={temp}
+            description={text}
           />
         </Grid>
         <Grid
@@ -53,9 +55,11 @@ const Details = ({ data }) => {
             justifyContent: 'center',
             alignItems: 'center',
             height: '80px',
+            color: 'rgba(255, 255, 255, .9)',
           }}
         >
-          <WeatherIconDetail src={weatherIcon(`${data.weather[0].icon}.png`)} />
+          <DynamicIcon size='96' iconName={`${icon}`}></DynamicIcon>
+
         </Grid>
       </>
     );

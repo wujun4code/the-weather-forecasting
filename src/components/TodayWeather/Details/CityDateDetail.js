@@ -5,7 +5,18 @@ import labels from '../../../i18n/labels';
 import { useIntl } from 'react-intl';
 
 const CityDateDetail = (props) => {
+
+  const getCityLabel = (city) => {
+    if (city.adm2 && city.name != city.adm2) return `${city.name}, ${city.adm2}`;
+    else if (city.adm1) return `${city.name}, ${city.adm1}`;
+    else if (city.country) return `${city.name}, ${city.country}`;
+
+    return city.name;
+  };
   const intl = useIntl();
+
+  const { qiCity } = props;
+  const cityLabel = getCityLabel(qiCity);
   return (
     <Box
       sx={{
@@ -30,7 +41,7 @@ const CityDateDetail = (props) => {
           marginBottom: '8px',
         }}
       >
-        {props.city}
+        {cityLabel}
       </Typography>
       <Typography
         variant="h4"

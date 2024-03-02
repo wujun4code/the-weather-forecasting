@@ -33,6 +33,17 @@ const Search = ({ onSearchChange }) => {
   //   }),
   // };
 
+  const getSelectingLabel = (city) => {
+    let label = `${city.name}`;
+    if (city.adm2 && city.adm2 != city.name) label = `${label}, ${city.adm2}`;
+
+    if (city.adm1) label = `${label}, ${city.adm1}`;
+
+    if (city.country) label = `${label}, ${city.country}`;
+
+    return label;
+  };
+
 
   const loadOptions = async (inputValue) => {
 
@@ -49,9 +60,11 @@ const Search = ({ onSearchChange }) => {
 
     const optionsPending = {
       options: data?.searchLocations?.map((city) => {
+        const selectingLabel = getSelectingLabel(city);
         return {
           value: `${city.lat} ${city.lon} ${city.id}`,
-          label: `${city.name}, ${city.country}`,
+          label: `${selectingLabel}`,
+          city: city
         };
       }),
     };
@@ -70,7 +83,7 @@ const Search = ({ onSearchChange }) => {
 
   const onChangeHandler = (enteredData) => {
     setSearchValue(enteredData);
-    onSearchChange(enteredData);
+    onSearchChange(enteredData,);
   };
 
   return (

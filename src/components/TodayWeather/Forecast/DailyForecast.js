@@ -5,18 +5,12 @@ import ErrorBox from '../../Reusable/ErrorBox';
 import Layout from '../../Reusable/Layout';
 import LocalizedText from '../../../i18n/localized';
 
-const DailyForecast = ({ data, forecastList, qiHourlyData }) => {
-  const noDataProvided =
-    !data ||
-    !forecastList ||
-    Object.keys(data).length === 0 ||
-    data.cod === '404' ||
-    forecastList.cod === '404';
+const DailyForecast = ({ qiHourlyData }) => {
+  const noDataProvided = !qiHourlyData || Object.keys(qiHourlyData).length === 0;
 
   let subHeader;
 
-
-  if (!noDataProvided && forecastList.length > 0)
+  if (!noDataProvided && qiHourlyData.length > 0)
     subHeader = (
       <Typography
         variant="h5"
@@ -40,7 +34,7 @@ const DailyForecast = ({ data, forecastList, qiHourlyData }) => {
 
   if (noDataProvided) content = <ErrorBox flex="1" type="error" />;
 
-  if (!noDataProvided && forecastList.length > 0)
+  if (!noDataProvided && qiHourlyData.length > 0)
     content = (
       <Grid
         item
@@ -66,13 +60,13 @@ const DailyForecast = ({ data, forecastList, qiHourlyData }) => {
               marginBottom: { xs: '1rem', sm: '0' },
             }}
           >
-            <DailyForecastItem item={item} data={data} qiItem={item} />
+            <DailyForecastItem qiItem={item} />
           </Grid>
         ))}
       </Grid>
     );
 
-  if (!noDataProvided && forecastList && forecastList.length === 0)
+  if (!noDataProvided && qiHourlyData && qiHourlyData.length === 0)
     subHeader = (
       <ErrorBox
         flex="1"

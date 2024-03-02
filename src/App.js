@@ -3,65 +3,52 @@ import { Box, Container, Grid, Link, SvgIcon, Typography } from '@mui/material';
 import Search from './components/Search/Search';
 import WeeklyForecast from './components/WeeklyForecast/WeeklyForecast';
 import TodayWeather from './components/TodayWeather/TodayWeather';
-import { fetchWeatherData } from './api/OpenWeatherService';
-import { GetHourlyByLocationId } from './api/weather-graphql';
-import { transformDateFormat } from './utilities/DatetimeUtils';
-import { UTCDatetime, AutoRefreshingDateTime } from './components/Reusable/UTCDatetime';
+import { GetByLocationId } from './api/weather-graphql';
+import { AutoRefreshingDateTime } from './components/Reusable/UTCDatetime';
 import LoadingBox from './components/Reusable/LoadingBox';
 import { ReactComponent as SplashIcon } from './assets/splash-icon.svg';
 import Logo from './assets/logo.png';
 import ErrorBox from './components/Reusable/ErrorBox';
-import { ALL_DESCRIPTIONS } from './utilities/DateConstants';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import {
-  getTodayForecastWeather,
-  getWeekForecastWeather,
-} from './utilities/DataUtils';
 import { useIntl } from 'react-intl';
 
 function App() {
+
   const intl = useIntl();
-  const [todayWeather, setTodayWeather] = useState(null);
-  const [todayForecast, setTodayForecast] = useState([]);
   const [qiHourlyData, setQiHourlyData] = useState([]);
-  const [weekForecast, setWeekForecast] = useState(null);
+  const [qiNowData, setQiNowData] = useState([]);
+  const [qiDailyData, setQiDailyData] = useState([]);
+  const [qiCity, setQiCity] = useState(null);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const searchChangeHandler = async (enteredData) => {
     const [latitude, longitude, locationId] = enteredData.value.split(' ');
+    const { city } = enteredData;
 
     setIsLoading(true);
 
-    const currentDate = transformDateFormat();
-    const date = new Date();
-    let dt_now = Math.floor(date.getTime() / 1000);
 
     try {
-      const [todayWeatherResponse, weekForecastResponse] =
-        await fetchWeatherData(latitude, longitude);
 
-      const { getHourlyByLocationId } = await GetHourlyByLocationId(locationId, "Hourly24H", intl.locale, 6);
-
-      const all_today_forecasts_list = getTodayForecastWeather(
-        weekForecastResponse,
-        currentDate,
-        dt_now
-      );
-
-
-      const all_week_forecasts_list = getWeekForecastWeather(
-        weekForecastResponse,
-        ALL_DESCRIPTIONS
-      );
-
-      setTodayForecast([...all_today_forecasts_list]);
-      setTodayWeather({ city: enteredData.label, ...todayWeatherResponse });
-      setQiHourlyData(getHourlyByLocationId);
-      setWeekForecast({
-        city: enteredData.label,
-        list: all_week_forecasts_list,
+      const { getHourlyByLocationId, getNowByLocationId, getDailyByLocationId } = await GetByLocationId({
+        variables: {
+          "locationId": locationId,
+          "lang": intl.locale,
+          "hourly": "Hourly24H",
+          "hourLimit": 6,
+          "daily": "Daily7D",
+          "dayLimit": 6
+        }
       });
+
+
+      setQiCity(city);
+      setQiHourlyData(getHourlyByLocationId);
+      setQiNowData(getNowByLocationId);
+      setQiDailyData(getDailyByLocationId);
+
     } catch (error) {
       setError(true);
     }
@@ -105,16 +92,16 @@ function App() {
     </Box>
   );
 
-  if (todayWeather && todayForecast && weekForecast) {
+  if (qiCity && qiNowData && qiHourlyData && qiDailyData) {
     appContent = (
       <React.Fragment>
-        <Grid item xs={12} md={todayWeather ? 6 : 12}>
+        <Grid item xs={12} md={qiNowData ? 6 : 12}>
           <Grid item xs={12}>
-            <TodayWeather data={todayWeather} forecastList={todayForecast} qiHourlyData={qiHourlyData} />
+            <TodayWeather qiCity={qiCity} qiNowData={qiNowData} qiHourlyData={qiHourlyData} />
           </Grid>
         </Grid>
         <Grid item xs={12} md={6}>
-          <WeeklyForecast data={weekForecast} />
+          <WeeklyForecast qiDailyData={qiDailyData} />
         </Grid>
       </React.Fragment>
     );

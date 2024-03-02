@@ -1,29 +1,11 @@
-import React, { useState, useEffect } from 'react';
-
-function importAll(r) {
-  let images = {};
-  r.keys().forEach((item, index) => {
-    images[item.replace('./', '')] = r(item);
-  });
-  return images;
-}
-
-export function weatherIcon(imageName) {
-  const allWeatherIcons = importAll(
-    require.context('../assets/icons', false, /\.(png)$/)
-  );
-
-  const iconsKeys = Object.keys(allWeatherIcons);
-
-  const iconsValues = Object.values(allWeatherIcons);
-  const iconIndex = iconsKeys.indexOf(imageName);
-
-  return iconsValues[iconIndex];
-}
+import React from 'react';
 
 
-export const DynamicIcon = ({ iconName }) => {
+export const DynamicIcon = ({ size, iconName }) => {
+  const dynamicStyle = {
+    fontSize: `${size}px` // 使用模板字符串动态设置 fontSize
+  };
   return (
-    <i className={`qi-${iconName}`} style={{ fontSize: "32px" }}></i>
+    <i className={`qi-${iconName}`} style={dynamicStyle}></i>
   );
 };
