@@ -52,6 +52,7 @@ const DailyForecastItem = (props) => {
           alt="weather"
           src={weatherIcon(`${props.data.weather[0].icon}.png`)}
         />
+       <i className="qi-901"></i>
       </Box>
       <Typography
         variant="h3"

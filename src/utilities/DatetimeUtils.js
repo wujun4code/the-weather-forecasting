@@ -45,6 +45,11 @@ export function getUTCDatetime() {
   return utcDate;
 }
 
+export function getLocalDateTime(date) {
+  const localTime = date.toLocaleString();
+  return localTime;
+}
+
 export function getUTCTime() {
   const utcTime = date.toLocaleString('en-US', {
     hour: '2-digit',

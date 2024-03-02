@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+
 function importAll(r) {
   let images = {};
   r.keys().forEach((item, index) => {
@@ -18,3 +20,27 @@ export function weatherIcon(imageName) {
 
   return iconsValues[iconIndex];
 }
+
+
+export const DynamicIcon = ({ iconName }) => {
+  const [IconComponent, setIconComponent] = useState(null);
+
+  useEffect(() => {
+    const importIcon = async () => {
+      try {
+        const { ReactComponent } = await import(`qweather-icons/icons/${iconName}-fill.svg`);
+        setIconComponent(() => ReactComponent);
+      } catch (error) {
+        console.error('Error loading icon:', error);
+      }
+    };
+
+    importIcon();
+  }, [iconName]);
+
+  return (
+    <div>
+      {IconComponent && <IconComponent />}
+    </div>
+  );
+};

@@ -4,8 +4,9 @@ import Search from './components/Search/Search';
 import WeeklyForecast from './components/WeeklyForecast/WeeklyForecast';
 import TodayWeather from './components/TodayWeather/TodayWeather';
 import { fetchWeatherData } from './api/OpenWeatherService';
+import { GetHourlyByLocationId } from './api/weather-graphql';
 import { transformDateFormat } from './utilities/DatetimeUtils';
-import UTCDatetime from './components/Reusable/UTCDatetime';
+import { UTCDatetime, AutoRefreshingDateTime } from './components/Reusable/UTCDatetime';
 import LoadingBox from './components/Reusable/LoadingBox';
 import { ReactComponent as SplashIcon } from './assets/splash-icon.svg';
 import Logo from './assets/logo.png';
@@ -16,8 +17,10 @@ import {
   getTodayForecastWeather,
   getWeekForecastWeather,
 } from './utilities/DataUtils';
+import { useIntl } from 'react-intl';
 
 function App() {
+  const intl = useIntl();
   const [todayWeather, setTodayWeather] = useState(null);
   const [todayForecast, setTodayForecast] = useState([]);
   const [weekForecast, setWeekForecast] = useState(null);
@@ -25,7 +28,7 @@ function App() {
   const [error, setError] = useState(false);
 
   const searchChangeHandler = async (enteredData) => {
-    const [latitude, longitude] = enteredData.value.split(' ');
+    const [latitude, longitude, locationId] = enteredData.value.split(' ');
 
     setIsLoading(true);
 
@@ -36,11 +39,17 @@ function App() {
     try {
       const [todayWeatherResponse, weekForecastResponse] =
         await fetchWeatherData(latitude, longitude);
+
+      const { getHourlyByLocationId: aa } = await GetHourlyByLocationId(locationId, "Hourly24H", intl.locale, 6);
+
+      console.log(`aa:${aa}`);
+
       const all_today_forecasts_list = getTodayForecastWeather(
         weekForecastResponse,
         currentDate,
         dt_now
       );
+
 
       const all_week_forecasts_list = getWeekForecastWeather(
         weekForecastResponse,
@@ -190,7 +199,7 @@ function App() {
               src={Logo}
             />
 
-            <UTCDatetime />
+            <AutoRefreshingDateTime />
             <Link
               href="https://github.com/agus-3rd-yoga/weather-app"
               target="_blank"

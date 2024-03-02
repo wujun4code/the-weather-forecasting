@@ -1,7 +1,11 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
+import { CurrentDate } from '../../Reusable/UTCDatetime';
+import labels from '../../../i18n/labels';
+import { useIntl } from 'react-intl';
 
 const CityDateDetail = (props) => {
+  const intl = useIntl();
   return (
     <Box
       sx={{
@@ -39,7 +43,7 @@ const CityDateDetail = (props) => {
           fontFamily: 'Roboto Condensed',
         }}
       >
-        Today {props.date}
+        {labels[intl.locale].today} <CurrentDate />
       </Typography>
     </Box>
   );

@@ -7,10 +7,15 @@ import CityDateDetail from './CityDateDetail';
 import TemperatureWeatherDetail from './TemperatureWeatherDetail';
 import WeatherIconDetail from './WeatherIconDetail';
 import Layout from '../../Reusable/Layout';
+import { useIntl } from 'react-intl';
+import labels from '../../../i18n/labels';
 
 const dayMonth = getDayMonthFromDate();
 
 const Details = ({ data }) => {
+
+  const intl = useIntl();
+
   const noDataProvided =
     !data || Object.keys(data).length === 0 || data.cod === '404';
 
@@ -55,7 +60,7 @@ const Details = ({ data }) => {
       </>
     );
 
-  return <Layout title="CURRENT WEATHER" content={content} />;
+  return <Layout title={labels[intl.locale]['current-weather']} content={content} />;
 };
 
 export default Details;

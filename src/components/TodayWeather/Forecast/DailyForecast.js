@@ -3,6 +3,7 @@ import { Grid, Typography } from '@mui/material';
 import DailyForecastItem from './DailyForecastItem';
 import ErrorBox from '../../Reusable/ErrorBox';
 import Layout from '../../Reusable/Layout';
+import LocalizedText from '../../../i18n/localized';
 
 const DailyForecast = ({ data, forecastList }) => {
   const noDataProvided =
@@ -82,7 +83,7 @@ const DailyForecast = ({ data, forecastList }) => {
 
   return (
     <Layout
-      title="TODAY'S FORECAST"
+      title={LocalizedText({ dataSource: 'labels', key: 'today-hourly' })}
       content={content}
       sectionSubHeader={subHeader}
       sx={{ marginTop: '2.9rem' }}
