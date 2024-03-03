@@ -7,7 +7,6 @@ import { GetByLocationId } from './api/weather-graphql';
 import { AutoRefreshingDateTime } from './components/Reusable/UTCDatetime';
 import LoadingBox from './components/Reusable/LoadingBox';
 import { ReactComponent as SplashIcon } from './assets/splash-icon.svg';
-import Logo from './assets/logo.png';
 import ErrorBox from './components/Reusable/ErrorBox';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useIntl } from 'react-intl';
