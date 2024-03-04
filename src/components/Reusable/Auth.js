@@ -5,7 +5,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LocalizedText from '../../i18n/localized';
 
 const AuthButton = () => {
-    const [showLoginButton, setShowLoginButton] = useState(true);
+    const [showLoginButton, setShowLoginButton] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,6 +17,7 @@ const AuthButton = () => {
                     setShowLoginButton(false);
                 }
             } catch (error) {
+                setShowLoginButton(true);
                 console.error('error to fetch', error);
             }
         };
@@ -26,7 +27,7 @@ const AuthButton = () => {
 
     return (
         <div>
-            {showLoginButton ? (
+            {showLoginButton === true && showLoginButton !== null && (
                 <Link
                     href="https://weather-graphql.shouyicheng.com"
                     target="_blank"
@@ -37,7 +38,9 @@ const AuthButton = () => {
                     </Button>
                 </Link>
 
-            ) : (
+            )}
+
+            {showLoginButton === false && showLoginButton !== null && (
                 <Link
                     href="https://github.com/wujun4code/the-weather-forecasting"
                     target="_blank"
