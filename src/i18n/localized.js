@@ -1,9 +1,8 @@
 import { useIntl } from 'react-intl';
-import labels from './labels'; // 假设你的 labels 文件路径是 './labels'
-
+import labels from './labels';
+import text from './text';
 const LocalizedText = ({ dataSource, key, locale }) => {
     const intl = useIntl();
-
     const getLocalizedText = () => {
         const currentLocale = locale || intl.locale;
 
@@ -14,6 +13,7 @@ const LocalizedText = ({ dataSource, key, locale }) => {
         } else if (dataSource === 'labels') {
             data = labels;
         } else if (dataSource === 'text') {
+            data = text;
             // Add more data sources as needed
             // data = yourTextDataSource;
         }

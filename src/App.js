@@ -1,15 +1,17 @@
+import { Box, Container, Grid, SvgIcon, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { Box, Container, Grid, Link, SvgIcon, Typography } from '@mui/material';
-import Search from './components/Search/Search';
-import WeeklyForecast from './components/WeeklyForecast/WeeklyForecast';
-import TodayWeather from './components/TodayWeather/TodayWeather';
-import { GetByLocationId } from './api/weather-graphql';
-import { AutoRefreshingDateTime } from './components/Reusable/UTCDatetime';
-import LoadingBox from './components/Reusable/LoadingBox';
-import { ReactComponent as SplashIcon } from './assets/splash-icon.svg';
-import ErrorBox from './components/Reusable/ErrorBox';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { useIntl } from 'react-intl';
+import { GetByLocationId } from './api/weather-graphql';
+import { ReactComponent as SplashIcon } from './assets/splash-icon.svg';
+import AuthButton from './components/Reusable/Auth';
+import ErrorBox from './components/Reusable/ErrorBox';
+import LoadingBox from './components/Reusable/LoadingBox';
+import { AutoRefreshingDateTime } from './components/Reusable/UTCDatetime';
+import Search from './components/Search/Search';
+import TodayWeather from './components/TodayWeather/TodayWeather';
+import WeeklyForecast from './components/WeeklyForecast/WeeklyForecast';
+import LocalizedText from './i18n/localized';
+
 
 function App() {
 
@@ -18,7 +20,6 @@ function App() {
   const [qiNowData, setQiNowData] = useState([]);
   const [qiDailyData, setQiDailyData] = useState([]);
   const [qiCity, setQiCity] = useState(null);
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -27,7 +28,6 @@ function App() {
     const { city } = enteredData;
 
     setIsLoading(true);
-
 
     try {
 
@@ -41,7 +41,6 @@ function App() {
           "dayLimit": 6
         }
       });
-
 
       setQiCity(city);
       setQiHourlyData(getHourlyByLocationId);
@@ -85,8 +84,7 @@ function App() {
           lineHeight: '22px',
         }}
       >
-        Explore current weather data and 6-day forecast of more than 200,000
-        cities!
+        {LocalizedText({ dataSource: 'text', key: 'welcome' })}
       </Typography>
     </Box>
   );
@@ -138,7 +136,7 @@ function App() {
               fontFamily: 'Poppins',
             }}
           >
-            Loading...
+            {LocalizedText({ dataSource: 'text', key: 'loading' })}
           </Typography>
         </LoadingBox>
       </Box>
@@ -198,22 +196,8 @@ function App() {
               TOWA
             </Typography>
 
-
             <AutoRefreshingDateTime />
-            <Link
-              href="https://github.com/wujun4code/the-weather-forecasting"
-              target="_blank"
-              underline="none"
-              sx={{ display: 'flex' }}
-            >
-              <GitHubIcon
-                sx={{
-                  fontSize: { xs: '20px', sm: '22px', md: '26px' },
-                  color: 'white',
-                  '&:hover': { color: '#2d95bd' },
-                }}
-              />
-            </Link>
+            <AuthButton />
           </Box>
           <Search onSearchChange={searchChangeHandler} />
         </Grid>

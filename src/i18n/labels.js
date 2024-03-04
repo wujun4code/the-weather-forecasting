@@ -10,6 +10,7 @@ const labels = {
         'feels-like':'Real Feel',
         'today-hourly':'TODAY\'S FORECAST',
         'coming-days-forecast':'Coming days forecast',
+        'log-in':'Log In',
         submitButton: 'Submit',
         cancelButton: 'Cancel',
         // Add more labels as needed
@@ -24,6 +25,7 @@ const labels = {
         'feels-like':'体感温度',
         'today-hourly':'今日分时段预测表',
         'coming-days-forecast':'未来几天预报',
+        'log-in':'登录',
         submitButton: '提交',
         cancelButton: '取消',
         // Add more labels as needed
@@ -38,6 +40,7 @@ const labels = {
         'feels-like':'體感溫度',
         'today-hourly':'今日分時段預測表',
         'coming-days-forecast':'未來幾天預報',
+        'log-in':'登錄',
         submitButton: '提交',
         cancelButton: '取消',
         // Add more labels as needed
