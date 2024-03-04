@@ -10,7 +10,7 @@ const AuthButton = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://weather-graphql.shouyicheng.com/oauth2/auth');
+                const response = await fetch('https://weather-graphql.shouyicheng.com/oauth2/auth', { credentials: 'include' });
                 if (response.status === 401) {
                     setShowLoginButton(true);
                 } else if (response.status === 200) {
