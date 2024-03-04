@@ -13,7 +13,7 @@ const AuthButton = () => {
                 const response = await fetch('https://weather-graphql.shouyicheng.com/oauth2/auth', { credentials: 'include' });
                 if (response.status === 401) {
                     setShowLoginButton(true);
-                } else if (response.status === 200) {
+                } else if (response.status > 199 && response.status < 300) {
                     setShowLoginButton(false);
                 }
             } catch (error) {
