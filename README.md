@@ -1,30 +1,30 @@
-## 💻 Live Demo:
+## 💻 在线 Demo
 
-https://weather-app-7w1.pages.dev/
+https://weather-web.shouyicheng.com/
 
-<br/>
-
-## ✨ Getting Started
-
-- Make sure you already have `Node.js` and `npm` installed in your system.
-- You need an API key from [OpenWeatherMap](https://openweathermap.org/). After creating an account, [grab your key](https://home.openweathermap.org/api_keys).
-- Then, under the `src` directory, go to `api/OpenWeatherService` and replace `WEATHER_API_KEY` with your OpenWeatherMap API Key.
-  - **`api/OpenWeatherService.js`**: It contains the code related to the back-end of the application.
+这是一个通过调用 https://weather-graphql.shouyicheng.com/ 的 Graphql API 来展示天气预报的迷你前端小 web
 
 <br/>
 
-## ⚡ Install
+## ✨ 开始之前
 
-- Clone the repository:
+- 确保你本地安装了 NodeJS 和 npm
+- 首先你得运行 https://github.com/wujun4code/weather-graphql 以及你得有一个 https://dev.qweather.com/docs/api/ 的 API Key
+- 当你能本地运行 https://github.com/wujun4code/weather-graphql 之后，你打开 localhost:4000 能调用一次 Graphql 成功之后，就可以开始运行本 web 前端项目了
+
+<br/>
+
+## ⚡ 安装
+
 
 ```bash
-git clone https://github.com/agus-3rd-yoga/weather-app.git
+git clone https://github.com/wujun4code/weather-graphql
 
 ```
 
-- Install the packages using the command `npm install`
+- 执行安装依赖 `npm install`
 
 <br/>
 
 
-## Thank You ☺
+浏览器打开 localhost:3000 即可。
